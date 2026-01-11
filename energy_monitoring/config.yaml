@@ -1,0 +1,41 @@
+---
+version: "1.0.0"
+slug: energy_monitoring
+name: Energy Monitoring
+description: Monitor and visualize your home energy consumption with detailed charts and statistics
+url: https://github.com/home-assistant/addons/tree/master/energy_monitoring
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+homeassistant: "2024.1.0"
+homeassistant_api: true
+ingress: true
+ingress_port: 8099
+ingress_entry: /index.html
+panel_icon: mdi:flash
+panel_title: Energy Monitor
+map:
+  - homeassistant_config:ro
+options:
+  log_level: info
+  update_interval: 30
+  currency: "$"
+  energy_price: 0.12
+  show_solar: true
+  show_battery: true
+  show_grid: true
+  dark_mode: auto
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)
+  update_interval: int(5,300)
+  currency: str
+  energy_price: float
+  show_solar: bool
+  show_battery: bool
+  show_grid: bool
+  dark_mode: list(auto|light|dark)
+startup: services
+init: false

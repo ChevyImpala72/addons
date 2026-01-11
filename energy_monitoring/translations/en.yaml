@@ -1,0 +1,26 @@
+---
+configuration:
+  log_level:
+    name: Log level
+    description: The level of logging output by the add-on.
+  update_interval:
+    name: Update interval
+    description: How often (in seconds) the dashboard should refresh energy data.
+  currency:
+    name: Currency symbol
+    description: The currency symbol to display with cost estimates.
+  energy_price:
+    name: Energy price
+    description: Your energy price per kWh for cost calculations.
+  show_solar:
+    name: Show solar
+    description: Display the solar panel section in the dashboard.
+  show_battery:
+    name: Show battery
+    description: Display the battery storage section in the dashboard.
+  show_grid:
+    name: Show grid
+    description: Display the grid connection section in the dashboard.
+  dark_mode:
+    name: Dark mode
+    description: Theme preference for the dashboard (auto, light, or dark).

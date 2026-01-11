@@ -1,0 +1,42 @@
+#!/command/with-contenv bashio
+# vim: ft=bash
+# ==============================================================================
+# Home Assistant Add-on: Energy Monitoring
+# Runs the nginx web server for the energy monitoring dashboard
+# ==============================================================================
+
+bashio::log.info "Starting Energy Monitoring dashboard..."
+
+# Get configuration options
+export LOG_LEVEL=$(bashio::config 'log_level')
+export UPDATE_INTERVAL=$(bashio::config 'update_interval')
+export CURRENCY=$(bashio::config 'currency')
+export ENERGY_PRICE=$(bashio::config 'energy_price')
+export SHOW_SOLAR=$(bashio::config 'show_solar')
+export SHOW_BATTERY=$(bashio::config 'show_battery')
+export SHOW_GRID=$(bashio::config 'show_grid')
+export DARK_MODE=$(bashio::config 'dark_mode')
+
+bashio::log.info "Configuration loaded:"
+bashio::log.info "  - Log level: ${LOG_LEVEL}"
+bashio::log.info "  - Update interval: ${UPDATE_INTERVAL}s"
+bashio::log.info "  - Currency: ${CURRENCY}"
+bashio::log.info "  - Energy price: ${ENERGY_PRICE}"
+
+# Generate configuration JSON for the web UI
+cat > /usr/share/www/config.json << EOF
+{
+    "updateInterval": ${UPDATE_INTERVAL},
+    "currency": "${CURRENCY}",
+    "energyPrice": ${ENERGY_PRICE},
+    "showSolar": ${SHOW_SOLAR},
+    "showBattery": ${SHOW_BATTERY},
+    "showGrid": ${SHOW_GRID},
+    "darkMode": "${DARK_MODE}"
+}
+EOF
+
+bashio::log.info "Starting nginx..."
+
+# Execute nginx
+exec nginx -g "daemon off;"

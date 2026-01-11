@@ -1,0 +1,8 @@
+#!/command/with-contenv bashio
+# vim: ft=bash
+# ==============================================================================
+# Home Assistant Add-on: Energy Monitoring
+# Cleanup script
+# ==============================================================================
+
+bashio::log.info "Energy Monitoring dashboard stopped."
